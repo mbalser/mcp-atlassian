@@ -39,6 +39,14 @@ dependencies = [
     "cryptography>=46.0.7",     # via authlib/pyjwt[crypto]/secretstorage; CVE-2026-39892
     "python-multipart>=0.0.26", # via mcp; CVE-2026-40347
 ]
+
+[project.optional-dependencies]
+# NER-based PII redaction backend for the privacy filter (PRIVACY_USE_PRESIDIO).
+# Heavy dependency (loads spaCy models); install only if you need NER detection.
+privacy-nlp = [
+    "presidio-analyzer>=2.2.0",
+]
+
 [[project.authors]]
 name = "sooperset"
 email = "soomiles.dev@gmail.com"
@@ -72,6 +80,7 @@ markers = [
     "integration: mark test as requiring integration with real services",
     "dc_e2e: mark test as requiring DC instances (Jira DC + Confluence DC)",
     "cloud_e2e: mark test as requiring Cloud instances (Jira Cloud + Confluence Cloud)",
+    "performance: mark test as a perf benchmark with explicit thresholds",
 ]
 
 [tool.ruff]
